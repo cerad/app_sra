@@ -5,13 +5,11 @@
 use Symfony\Component\HttpFoundation\Request;
 
 require '../vendor/autoload.php';
+require '../config/config.php';
 
 $request = Request::createFromGlobals();
 
 $host = $request->getHost();
-
-// Pull this from local config file
-$apiPrefix = 'http://localhost:8001';
 
 ?>
 <!DOCTYPE html>
@@ -21,11 +19,13 @@ $apiPrefix = 'http://localhost:8001';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>SRA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
   </head>
   <body>
     <div ng-view></div>
     <script src="js/vendor.js"></script>
     <script src="app.js"></script>
+    <script src="modules/auth/auth.js"></script>
     <script src="modules/referee/referee-model.js"></script>
     <script src="modules/referee/referee-controller.js"></script>
     <script>

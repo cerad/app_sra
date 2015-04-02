@@ -1,3 +1,17 @@
+<div ng-controller="CeradUserInfoController as userInfo">
+  <div ng-show="userInfo.user">
+    {{userInfo.user.username}} {{ userInfo.user.person_name }}
+    <button ng-click="userInfo.logout()">Log Out</button>
+  </div>
+  <div ng-hide="userInfo.user">
+    <form novalidate class="simple-form" ng-controller="CeradLoginController as login">
+      User Name: <input type="text"     name="username" ng-model="login.userLoginInfo.username" />
+      Password:  <input type="password" name="password" ng-model="login.userLoginInfo.password" />
+      <input type="submit" ng-click="login.loginSubmit()" value="Login" />
+    </form>
+  </div>
+</div>
+<br>
 <div>
   <table border="1">
     <tr ng-repeat="referee in refereeList.referees">

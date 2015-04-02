@@ -3,3 +3,4 @@
 /vendor/
 /bower_components/
 /web_app/js/
+/config/config.php

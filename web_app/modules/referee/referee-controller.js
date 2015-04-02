@@ -41,7 +41,7 @@ refereeModule.controller('RefereeShowController',
     
     refereeRepository.findOne($routeParams.id).then(function(item)
     {
-      vm.referee = item; console.log(item);
+      vm.referee = item; // console.log(item);
     });
   }
 ]);

@@ -13,7 +13,7 @@ class ApiServices
       (
         $c->get('jwt_coder'),
         $c->get('auth_user_provider_in_memory'),
-        $c->get('auth_user_password_plain_text')
+        $c->get('auth_user_password_encoder_plain_text')
       );
     });
   }
