@@ -6,10 +6,11 @@ var scriptFiles = [ 'ang/app.js' ];
 var scriptDest  = 'web_app/js';
 var scriptVendorFiles = 
 [
-  'bower_components/ngstorage/ngstorage.min.js',
   'bower_components/angular/angular.min.js',
   'bower_components/angular-route/angular-route.min.js',
-  'bower_components/angular-bootstrap/ui-bootstrap.min.js'
+  'bower_components/ngstorage/ngstorage.min.js',
+  'bower_components/angular-bootstrap/ui-bootstrap.min.js',
+  'bower_components/ngstorage/ngstorage.min.js'
 ];
 
 var watchTask = function() 

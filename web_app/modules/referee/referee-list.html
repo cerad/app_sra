@@ -1,0 +1,15 @@
+<div>
+  <table border="1">
+    <tr ng-repeat="referee in refereeList.referees">
+      <td>{{ referee.ussf_id }}<br>{{ referee.email_ussf }}</td>
+      <td>{{ referee.name_first }}<br>{{ referee.name_last }}<br>{{ referee.name_full }}</td>
+      <td>
+        Year:     {{ referee.reg_year  }}<br>
+        State:    {{ referee.reg_state }}<br>
+        Status:   {{ referee.reg_status}}<br>
+        District: {{ referee.district  }}
+      </td>
+      <td><a href="#/referees/{{referee.id}}/show">Details</a></td>
+    </tr>
+  </table>
+</div>
