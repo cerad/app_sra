@@ -1,3 +1,5 @@
 /nbproject/private/
 /composer.lock
 /vendor/
+/bower_components/
+/web_app/js/
