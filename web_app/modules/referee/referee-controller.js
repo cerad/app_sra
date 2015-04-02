@@ -18,17 +18,34 @@ refereeModule.config(['$routeProvider',function($routeProvider) {
       controller:  'RefereeInsertController as refereeInsert'});
 }]);
 
-refereeModule.controller('RefereeListController', ['CeradRefereeRepository',
-  function(refereeRepository) 
+refereeModule.controller('RefereeListController', 
+  ['$scope','CeradRefereeRepository',
+  function($scope,refereeRepository) 
   {
     var vm = this;
     
     vm.referees = [];
-    
+  
+    var findAll = function()
+    {
+      refereeRepository.findAll().then(function(items)
+      {
+        vm.referees = items;
+      });  
+    };
+    findAll();
+    /*
     refereeRepository.findAll().then(function(items)
     {
       vm.referees = items;
-    });  
+    });*/
+    $scope.$on('userChanged',function(op)
+    {
+      // Really need cache to be rethought
+      vm.referees = [];
+      refereeRepository.reset();
+      findAll();
+    });
   }
 ]);
 refereeModule.controller('RefereeShowController', 

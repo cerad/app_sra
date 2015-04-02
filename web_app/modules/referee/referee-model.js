@@ -54,6 +54,8 @@ var RefereeRepository = function($http,$q,apiPrefix)
   
   var promiseAll = null; // This is the query cache
   
+  this.reset = function() { promiseAll = null; }
+  
   this.findAll = function() 
   { 
     return promiseAll ? promiseAll : self.loadAll();
@@ -69,6 +71,10 @@ var RefereeRepository = function($http,$q,apiPrefix)
         itemsx.push(new Referee(item));
       });
       return itemsx;
+    },function() //($response)
+    {
+      //console.log('Error response');
+      return [];
     });
   };
   this.loadOne = function(id)
@@ -133,7 +139,8 @@ var RefereeRepository = function($http,$q,apiPrefix)
     return referee;
   };
 };
-refereeModule.factory('CeradRefereeRepository', ['$http','$q','CeradApiPrefix',
+refereeModule.factory('CeradRefereeRepository', 
+['$http','$q','CeradApiPrefix',
   function($http,$q,apiPrefix)
   {
     var refereeRepository = new RefereeRepository($http,$q,apiPrefix);

@@ -11,20 +11,14 @@ authModule.config(['$routeProvider',function($routeProvider) {
 
 authModule.factory('CeradAuthInterceptor', ['$q', 'CeradAuthManager', function ($q, authManager) {
   return {
-    request: function (config) {
+    request: function (config) 
+    {
       config.headers = config.headers || {};
       if (authManager.authToken) 
       {
         config.headers.Authorization = '' + authManager.authToken;
       }
       return config;
-    },
-    response: function (response) {
-      if (response.status === 401) {
-        // handle the case where the user is not authenticated
-        alert('401 response ');
-      }
-      return response || $q.when(response);  //???
     }
   };
 }]);
@@ -93,8 +87,6 @@ authModule.controller('CeradLoginController',
       
       if (self.userLoginInfo.rememberMe) authManager.userLoginInfo = self.userLoginInfo;
       else                               authManager.userLoginInfo = null;
-      
-    //$location.url('/home');
     };
   }
 ]);
