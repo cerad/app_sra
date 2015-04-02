@@ -1,0 +1,21 @@
+{
+    "name": "cerad/app_sra",
+    "license": "MIT",
+    "type": "project",
+    "description": "SRA Application",
+    "autoload": 
+    {
+        "psr-4": 
+          { 
+            "Cerad\\Module\\":    "src/" ,
+            "Cerad\\Component\\": "src/" 
+          }
+    },
+    "repositories": [
+        { "type": "vcs", "url": "https://github.com/cerad/appx" }
+    ],
+    "require": {
+        "php": ">=5.5.1",
+        "cerad/appx": "dev-master"
+    }
+}
