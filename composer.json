@@ -15,7 +15,7 @@
         { "type": "vcs", "url": "https://github.com/cerad/appx" }
     ],
     "require": {
-        "php": ">=5.5.1",
+        "php": ">=5.4.19",
         "cerad/appx": "dev-master"
     }
 }
