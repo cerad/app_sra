@@ -1,5 +1,5 @@
 {
-    "name": "cerad/app_sra",
+    "name": "cerad/app-sra",
     "license": "MIT",
     "type": "project",
     "description": "SRA Application",
@@ -12,10 +12,12 @@
           }
     },
     "repositories": [
-        { "type": "vcs", "url": "https://github.com/cerad/appx" }
+        { "type": "vcs", "url": "https://github.com/cerad/appx" },
+        { "type": "vcs", "url": "https://github.com/cerad/http" }
     ],
     "require": {
         "php": ">=5.4.19",
-        "cerad/appx": "dev-master"
+        "cerad/appx": "dev-master",
+        "cerad/http": "dev-master"
     }
 }
