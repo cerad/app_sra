@@ -2,14 +2,20 @@
 /* Mostly html but use php to initialize a few things
  * 
  */
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
+
+use Cerad\Component\HttpMessage\Request as CeradRequest;
 
 require '../vendor/autoload.php';
-require '../config/config.php';
+require '../config/config.php';  // loads ceradApiPrefix
 
-$request = Request::createFromGlobals();
+$ceradRequest = new CeradRequest($_SERVER);
 
-$host = $request->getHost();
+$symfonyRequest = SymfonyRequest::createFromGlobals();
+
+// $host = $request->getHost();
+
+$baseHref = $ceradRequest->getBaseHref();
 
 ?>
 <!DOCTYPE html>
@@ -19,7 +25,7 @@ $host = $request->getHost();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>SRA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="/">
+    <base href="<?php echo $baseHref; ?>">
   </head>
   <body>
     <div ng-view></div>
