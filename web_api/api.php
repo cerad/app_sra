@@ -1,6 +1,6 @@
 <?php
 
-use Symfony\Component\HttpFoundation\Request;
+use Cerad\Component\HttpMessage\Request;
 
 use Cerad\Module\ApiModule\ApiKernel;
 
@@ -10,7 +10,7 @@ call_user_func(function()
 
   $api = new ApiKernel('prod',false);
 
-  $request = Request::createFromGlobals();
+  $request = new Request($_SERVER);
   $response = $api->handle($request);
   $response->send();
 });
