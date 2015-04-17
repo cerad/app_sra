@@ -54,7 +54,7 @@ var RefereeRepository = function($http,$q,apiPrefix)
   
   var promiseAll = null; // This is the query cache
   
-  this.reset = function() { promiseAll = null; }
+  this.reset = function() { promiseAll = null; };
   
   this.findAll = function() 
   { 
