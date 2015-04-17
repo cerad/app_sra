@@ -1,8 +1,4 @@
 <?php
-/* Mostly html but use php to initialize a few things
- * 
- */
-use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 use Cerad\Component\HttpMessage\Request as CeradRequest;
 
@@ -11,12 +7,7 @@ require '../config/config.php';  // loads ceradApiPrefix
 
 $ceradRequest = new CeradRequest($_SERVER);
 
-$symfonyRequest = SymfonyRequest::createFromGlobals();
-
-// $host = $request->getHost();
-
 $baseHref = $ceradRequest->getBaseHref();
-
 ?>
 <!DOCTYPE html>
 <html lang="en" ng-app="CeradSraApp" ng-strict-di>
