@@ -1,6 +1,6 @@
 (function(angular) { 'use strict';
     
-var refereeModule = angular.module('CeradRefereeModule');
+var refereeModule = angular.module('ceradRefereeControllerModule',[]);
 
 refereeModule.config(['$routeProvider',function($routeProvider) {
   $routeProvider.

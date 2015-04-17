@@ -1,6 +1,6 @@
 (function(angular) { 'use strict';
     
-var refereeModule = angular.module('CeradRefereeModule');
+var refereeModule = angular.module('ceradRefereeModelModule',[]);
 
 var Referee = function(params)
 {
@@ -139,15 +139,14 @@ var RefereeRepository = function($http,$q,apiPrefix)
     return referee;
   };
 };
-refereeModule.factory('CeradRefereeRepository', 
-['$http','$q','CeradApiPrefix',
-  function($http,$q,apiPrefix)
+refereeModule.factory('CeradRefereeRepository',
+  function($http,$q,ceradApiPrefix)
   {
-    var refereeRepository = new RefereeRepository($http,$q,apiPrefix);
+    var refereeRepository = new RefereeRepository($http,$q,ceradApiPrefix);
     
   //refereeRepository.loadAll();
     
     return refereeRepository;
-}]);
+});
 
 })(angular);

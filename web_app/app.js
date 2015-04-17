@@ -1,8 +1,10 @@
 (function(angular) { 'use strict';
 
-var appModule = angular.module('CeradSraApp', ['ngRoute','ngStorage',
-  'CeradAuthModule',
-  'CeradRefereeModule'
+var appModule = angular.module('ceradSraApp', 
+[
+  'ngRoute','ngStorage',
+  'ceradAuthModule',
+  'ceradRefereeModelModule','ceradRefereeControllerModule'
 ]);
 
 appModule.config(['$locationProvider',function($locationProvider) 
@@ -14,10 +16,7 @@ appModule.config(['$routeProvider',function($routeProvider)
   $routeProvider.otherwise({ redirectTo: '/referees'});
 }]);
 appModule.config(['$httpProvider', function ($httpProvider) {
-  $httpProvider.interceptors.push('CeradAuthInterceptor');
+  $httpProvider.interceptors.push('ceradAuthInterceptor');
 }]);
-
-// Create empty modules
-angular.module('CeradRefereeModule',[]);
 
 })(angular);

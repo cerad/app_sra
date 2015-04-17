@@ -10,7 +10,7 @@ $ceradRequest = new CeradRequest($_SERVER);
 $baseHref = $ceradRequest->getBaseHref();
 ?>
 <!DOCTYPE html>
-<html lang="en" ng-app="CeradSraApp" ng-strict-di>
+<html lang="en" ng-app="ceradSraApp">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,9 +28,9 @@ $baseHref = $ceradRequest->getBaseHref();
     <script>
     (function(angular) { 'use strict';
       
-      var appModule = angular.module('CeradSraApp');
+      var appModule = angular.module('ceradSraApp');
 
-      appModule.constant('CeradApiPrefix','<?php echo $apiPrefix; ?>');
+      appModule.constant('ceradApiPrefix','<?php echo $apiPrefix; ?>');
 
     })(angular);
     </script>
