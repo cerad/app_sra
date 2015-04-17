@@ -1,25 +1,17 @@
 {
-    "name": "cerad/app-sra",
-    "license": "MIT",
-    "type": "project",
-    "description": "SRA Application",
-    "autoload": 
-    {
-        "psr-4": 
-          { 
-            "Cerad\\Module\\":    "src/" ,
-            "Cerad\\Component\\": "src/" 
-          }
-    },
-    "prefer-stable":      true,
-    "minimum-stability": "dev",
-    "repositories": [
-        { "type": "vcs", "url": "https://github.com/cerad/jwt"  },
-        { "type": "vcs", "url": "https://github.com/cerad/http" },
-        { "type": "vcs", "url": "https://github.com/cerad/appx" }
-    ],
-    "require": {
-        "php": ">=5.4.19",
-        "cerad/appx": "dev-master"
-    }
+  "name": "cerad/app-sra",
+  "license": "MIT",
+  "type": "project",
+  "description": "SRA Application",
+  "autoload": { "psr-4": 
+  { 
+    "Cerad\\Module\\":    "src/" ,
+    "Cerad\\Component\\": "src/" 
+  }},
+  "prefer-stable":      true,
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.4.19",
+    "cerad/appx": "dev-master"
+  }
 }
