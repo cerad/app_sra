@@ -6,7 +6,7 @@ authModule.config(['$routeProvider',function($routeProvider) {
   $routeProvider.
     when('/login', { 
       templateUrl: 'modules/auth/login.html', 
-      controller:  'CeradLoginController as login'});
+      controller:  'CeradUserLoginController as login'});
 }]);
 
 authModule.factory('CeradAuthInterceptor', ['$q', 'CeradAuthManager', function ($q, authManager) {
@@ -26,7 +26,7 @@ authModule.factory('CeradAuthInterceptor', ['$q', 'CeradAuthManager', function (
 /* ========================
  * How much of this can be moved to the authManager?
  */
-authModule.controller('CeradLoginController', 
+authModule.controller('CeradUserLoginController', 
   ['$scope','$window','$http','$location','CeradApiPrefix','CeradAuthManager',
   function($scope,$window,$http,$location,apiPrefix,authManager) 
   { 
@@ -112,6 +112,33 @@ function($scope,$location,authManager)
   });
 }]);
 
+/* ============================================================
+ * Directive for displaying user information panel
+ */
+authModule.directive('ceradUserInfo',function() { 
+return {
+  restrict: 'E',
+  scope: {},
+  controller:   'CeradUserInfoController',
+  controllerAs: 'userInfo',
+  templateUrl:  'modules/auth/user-info.html',
+  link: function(scope, element, attrs)
+  {
+    // console.log('ceradUserInfo');
+  }
+};});
+authModule.directive('ceradUserLogin',function() { 
+return {
+  restrict: 'E',
+  scope: {},
+  controller:   'CeradUserLoginController',
+  controllerAs: 'login',
+  templateUrl:  'modules/auth/user-login-form.html',
+  link: function(scope, element, attrs)
+  {
+    // console.log('ceradUserInfo');
+  }
+};});
 // Want to be able to configure this for different storage
 /* So far there is nothing to actually manage
  * This is actualy an authStorage service

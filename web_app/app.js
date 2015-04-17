@@ -7,7 +7,7 @@ var appModule = angular.module('CeradSraApp', ['ngRoute','ngStorage',
 
 appModule.config(['$locationProvider',function($locationProvider) 
 { // Need base uri I think
-  //$locationProvider.html5Mode(true);
+  // $locationProvider.html5Mode(true);
 }]);
 appModule.config(['$routeProvider',function($routeProvider) 
 {

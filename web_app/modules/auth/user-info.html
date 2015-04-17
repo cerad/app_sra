@@ -1,0 +1,7 @@
+<div>
+  <div ng-show="userInfo.user">
+    {{userInfo.user.username}} {{ userInfo.user.person_name }}
+    <button ng-click="userInfo.logout()">Log Out</button>
+  </div>
+  <div ng-hide="userInfo.user"><cerad-user-login></cerad-user-login></div>
+</div>
