@@ -2,7 +2,8 @@
     
 var refereeModule = angular.module('ceradRefereeControllerModule',[]);
 
-refereeModule.config(['$routeProvider',function($routeProvider) {
+refereeModule.config(function($routeProvider) 
+{
   $routeProvider.
     when('/referees', { 
       templateUrl: 'modules/referee/referee-list.html',
@@ -16,87 +17,79 @@ refereeModule.config(['$routeProvider',function($routeProvider) {
     when('/referees/insert', {
       templateUrl: 'modules/referee/referee-insert.html',
       controller:  'RefereeInsertController as refereeInsert'});
-}]);
+});
 
-refereeModule.controller('RefereeListController', 
-  ['$scope','CeradRefereeRepository',
-  function($scope,refereeRepository) 
-  {
-    var vm = this;
+refereeModule.controller('RefereeListController',function($scope,ceradRefereeRepository) 
+{
+  var vm = this;
     
-    vm.referees = [];
+  vm.referees = [];
   
-    var findAll = function()
-    {
-      refereeRepository.findAll().then(function(items)
-      {
-        vm.referees = items;
-      });  
-    };
-    findAll();
-    /*
-    refereeRepository.findAll().then(function(items)
+  var findAll = function()
+  {
+    ceradRefereeRepository.findAll().then(function(items)
     {
       vm.referees = items;
-    });*/
-    $scope.$on('userChanged',function(op)
-    {
-      // Really need cache to be rethought
-      vm.referees = [];
-      refereeRepository.reset();
-      findAll();
-    });
-  }
-]);
-refereeModule.controller('RefereeShowController', 
-  ['$routeParams', 'CeradRefereeRepository',
-  function($routeParams, refereeRepository) 
+    });  
+  };
+  findAll();
+  /*
+  refereeRepository.findAll().then(function(items)
   {
-    var vm = this;
+    vm.referees = items;
+  });*/
+  var userChanged = function()
+  {
+    vm.referees = [];
+    ceradRefereeRepository.reset();
+    findAll();
+  };
+  $scope.$on('userChanged',userChanged);
+});
+refereeModule.controller('RefereeShowController', function($routeParams,ceradRefereeRepository) 
+{
+  var vm = this;
     
-    vm.referee = {};
+  vm.referee = {};
     
-    refereeRepository.findOne($routeParams.id).then(function(item)
+  var findOneThen = function(item)
+  {
+    vm.referee = item;
+  };
+  ceradRefereeRepository.findOne($routeParams.id).then(findOneThen);
+});
+refereeModule.controller('RefereeUpdateController', function($routeParams,ceradRefereeRepository) 
+{ 
+  var vm = this;
+  
+  vm.referee = {};
+    
+  ceradRefereeRepository.findOne($routeParams.id).then(function(item)
+  {
+    vm.referee = item;
+  });
+    
+  vm.update = function() 
+  {
+    ceradRefereeRepository.update(vm.referee).then(function(item)
     {
-      vm.referee = item; // console.log(item);
+      // Do this then the cache becomes invalid.  Maybe a replace?
+      //vm.referee = item;
     });
-  }
-]);
-refereeModule.controller('RefereeUpdateController', 
-  ['$routeParams', 'CeradRefereeRepository',
-  function($routeParams, refereeRepository) 
-  { 
-    var vm = this;
+  };
+});
+refereeModule.controller('RefereeInsertController',function(ceradRefereeRepository) 
+{
+  var vm = this;
     
-    vm.referee = {};
+  vm.referee = ceradRefereeRepository.create();
     
-    refereeRepository.findOne($routeParams.id).then(function(item)
+  this.insert = function() {
+    ceradRefereeRepository.insert(vm.referee).then(function(item)
     {
       vm.referee = item;
     });
-    
-    vm.update = function() {
-      refereeRepository.update(vm.referee).then(function(item)
-      {
-        // Do this then the cache becomes invalid.  Maybe a replace?
-        //vm.referee = item;
-      });
-    };
-  }
-]);
-refereeModule.controller('RefereeInsertController', ['CeradRefereeRepository',
-  function(refereeRepository) 
-  {
-    var vm = this;
-    
-    vm.referee = refereeRepository.create();
-    
-    this.insert = function() {
-      refereeRepository.insert(vm.referee).then(function(item)
-      {
-        vm.referee = item;
-      });
-    };
-  }
-]);
+  };
+});
+
 })(angular);

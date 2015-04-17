@@ -46,11 +46,11 @@ Object.defineProperty(Referee.prototype, 'name_full',
   }
 });
 
-var RefereeRepository = function($http,$q,apiPrefix)
+var RefereeRepository = function($http,$q,ceradApiPrefix)
 {
   var self = this;
   
-  var resourceUrl = apiPrefix + '/referees';
+  var resourceUrl = ceradApiPrefix + '/referees';
   
   var promiseAll = null; // This is the query cache
   
@@ -139,7 +139,7 @@ var RefereeRepository = function($http,$q,apiPrefix)
     return referee;
   };
 };
-refereeModule.factory('CeradRefereeRepository',
+refereeModule.factory('ceradRefereeRepository',
   function($http,$q,ceradApiPrefix)
   {
     var refereeRepository = new RefereeRepository($http,$q,ceradApiPrefix);
