@@ -20,7 +20,8 @@ class ApiKernel extends KernelApp
     
     new ApiParameters($container);
     
-    new KernelServices($container);
+    $kernelServices = new KernelServices();
+    $kernelServices->registerServices($container);
     
     new AuthServices($container);
     new AuthRoutes  ($container);
