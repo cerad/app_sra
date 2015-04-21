@@ -46,7 +46,10 @@ refereeModule.controller('RefereeListController',function($scope,ceradRefereeRep
   };
   $scope.$on('userChanged',userChanged);
 });
-refereeModule.controller('RefereeShowController', function($routeParams,ceradRefereeRepository) 
+
+refereeModule.controller('RefereeShowController', RefereeShowController);
+
+function RefereeShowController($routeParams,ceradRefereeRepository) 
 {
   var vm = this;
     
@@ -57,7 +60,7 @@ refereeModule.controller('RefereeShowController', function($routeParams,ceradRef
     vm.referee = item;
   };
   ceradRefereeRepository.findOne($routeParams.id).then(findOneThen);
-});
+};
 refereeModule.controller('RefereeUpdateController', function($routeParams,ceradRefereeRepository) 
 { 
   var vm = this;

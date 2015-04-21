@@ -14,10 +14,8 @@ use Cerad\Module\RefereeModule\RefereeRoutes;
 
 class ApiKernel extends KernelApp
 {
-  protected function registerServices()
-  {
-    $container = $this->container;
-    
+  protected function registerServices($container)
+  { 
     new ApiParameters($container);
     
     $kernelServices = new KernelServices();

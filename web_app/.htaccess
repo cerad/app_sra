@@ -2,6 +2,10 @@ DirectoryIndex disabled
 
 RewriteEngine On
 
+# Apache strips Authorization
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+
 # Serve existing files
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule .? - [L]

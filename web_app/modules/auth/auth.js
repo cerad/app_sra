@@ -5,11 +5,17 @@ var authModule = angular.module('ceradAuthModule', []);
 authModule.config(function($routeProvider) {
   $routeProvider.
     when('/login', { 
-      templateUrl: 'modules/auth/login.html', 
-      controller:  'CeradUserLoginController as login'});
+      templateUrl:  'modules/auth/login.html', 
+      controller:   'CeradUserLoginController',
+      controllerAs: 'login'});
 });
 
-var ceradAuthInterceptor = function(ceradAuthManager) 
+/* ==============================================================
+ * Addes the authorization header to http requests
+ */
+authModule.factory('ceradAuthInterceptor',ceradAuthInterceptor);
+
+function ceradAuthInterceptor(ceradAuthManager) 
 { 
   return {
     request: function (config) 
@@ -17,18 +23,20 @@ var ceradAuthInterceptor = function(ceradAuthManager)
       config.headers = config.headers || {};
       if (ceradAuthManager.authToken) 
       {
-        config.headers.Authorization = '' + ceradAuthManager.authToken;
+        config.headers.Authorization = 'Bearer ' + ceradAuthManager.authToken;
       }
       return config;
     }
   };
 };
-authModule.factory('ceradAuthInterceptor',ceradAuthInterceptor);
 
-/* ========================
+/* ====================================================
+ * Login controller and directive
  * How much of this can be moved to the authManager?
  */
-var ceradUserLoginController = function($window,$http,ceradApiPrefix,ceradAuthManager) 
+authModule.controller('CeradUserLoginController',ceradUserLoginController);
+
+function ceradUserLoginController($window, $http, ceradApiPrefix, ceradAuthManager) 
 { 
   var self = this;
     
@@ -88,9 +96,10 @@ var ceradUserLoginController = function($window,$http,ceradApiPrefix,ceradAuthMa
     else                               ceradAuthManager.userLoginInfo = null;
   };
 };
-authModule.controller('CeradUserLoginController',ceradUserLoginController);
 
-var ceradUserInfoController = function($scope,$location,ceradAuthManager) 
+authModule.controller('CeradUserInfoController',ceradUserInfoController);
+
+function ceradUserInfoController($scope,$location,ceradAuthManager) 
 { 
   var self = this;
   
@@ -109,12 +118,13 @@ var ceradUserInfoController = function($scope,$location,ceradAuthManager)
     self.user = ceradAuthManager.authUser;
   });
 };
-authModule.controller('CeradUserInfoController',ceradUserInfoController);
 
 /* ============================================================
  * Directive for displaying user information panel
  */
-var ceradUserInfo = function() 
+authModule.directive('ceradUserInfo',ceradUserInfoDirective);
+
+function ceradUserInfoDirective()
 { 
   var obj =
   {
@@ -130,9 +140,10 @@ var ceradUserInfo = function()
   };
   return obj;
 };
-authModule.directive('ceradUserInfo',ceradUserInfo);
 
-var ceradUserLogin = function() 
+authModule.directive('ceradUserLogin',ceradUserLoginDirective);
+
+function ceradUserLoginDirective() 
 { 
   return {
     restrict: 'E',
@@ -146,7 +157,6 @@ var ceradUserLogin = function()
     }
   };
 };
-authModule.directive('ceradUserLogin',ceradUserLogin);
 
 // Want to be able to configure this for different storage
 /* So far there is nothing to actually manage
